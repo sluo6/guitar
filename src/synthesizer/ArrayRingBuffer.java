@@ -17,6 +17,11 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
   * Create a new ArrayRingBuffer with the given capacity.
   */
  public ArrayRingBuffer(int capacity) {
+	 this.first = 0;
+	 this.last = 0;
+	 this.fillCount = 0;
+	 this.capacity = capacity;
+	 this.rb = (T[]) new Object[capacity];
      // TODO: Create new array with capacity elements.
      //       first, last, and fillCount should all be set to 0.
      //       this.capacity should be set appropriately. Note that the local variable
@@ -29,25 +34,50 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
   * throw new RuntimeException("Ring buffer overflow"). Exceptions
   * covered Monday.
   */
- public void enqueue(T x) {
+ public void enqueue(T x) {	 
+	 if (fillCount == capacity) {
+		 throw new RuntimeException("Ring buffer overflow");
+	 }
+	 rb[last] = x;
+	 last = plusOne(last);
+	 fillCount+=1;
      // TODO: Enqueue the item. Don't forget to increase fillCount and update last.
  }
 
- /**
+ private int plusOne(int n) {
+	int a = (n + 1) % capacity;
+	return a;
+}
+
+/**
   * Dequeue oldest item in the ring buffer. If the buffer is empty, then
   * throw new RuntimeException("Ring buffer underflow"). Exceptions
   * covered Monday.
   */
  public T dequeue() {
+	 if (fillCount == 0) {
+		 throw new RuntimeException("Ring buffer underflow");
+	 }
+	 T toDequeue = rb[first];
+	 rb[first] = null;
+	 first = plusOne(first);
+	 fillCount -=1;
+	 return toDequeue;
      // TODO: Dequeue the first item. Don't forget to decrease fillCount and update 
  }
 
- /**
+
+/**
   * Return oldest item, but don't remove it.
   */
  public T peek() {
+	 return rb[first];
      // TODO: Return the first item. None of your instance variables should change.
  }
+
+
+
+
 
  // TODO: When you get to part 5, implement the needed code to support iteration.
 }

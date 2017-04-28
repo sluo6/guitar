@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 //TODO: Make sure to make this class and all of its methods public
 //TODO: Make sure to make this class extend AbstractBoundedQueue<t>
-public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Iterable<T>{
+public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
  /* Index for the next dequeue or peek. */
  private int first;            // index for the next dequeue or peek
  /* Index for the next enqueue. */
@@ -75,13 +75,11 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
      // TODO: Return the first item. None of your instance variables should change.
  }
 
-@Override
-public Iterator<T> iterator() {
-	return this.rb.iterator();
+
 }
 
 
 
 
  // TODO: When you get to part 5, implement the needed code to support iteration.
-}
+

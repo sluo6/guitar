@@ -8,10 +8,15 @@ public class GuitarString {
     private static final double DECAY = .996; // energy decay factor
 
     /* Buffer for storing sound data. */
-    private BoundedQueue buffer;
+    private BoundedQueue<Double> buffer;
 
     /* Create a guitar string of the given frequency.  */
     public GuitarString(double frequency) {
+    	int capacity = (int) Math.round(SR / frequency);
+    	this.buffer = new ArrayRingBuffer<Double>(capacity);
+    	for (double a:buffer) {
+    		
+    	}
         // TODO: Create a buffer with capacity = SR / frequency. You'll need to
         //       cast the result of this divsion operation into an int. For better
         //       accuracy, use the Math.round() function before casting.

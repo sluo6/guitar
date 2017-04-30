@@ -67,9 +67,8 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
  }
 
 
-/**
-  * Return oldest item, but don't remove it.
-  */
+/** Return oldest item, but don't remove it. */
+ @Override
  public T peek() {
 	 return rb[first];
      // TODO: Return the first item. None of your instance variables should change.

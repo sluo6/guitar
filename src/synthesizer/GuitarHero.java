@@ -57,6 +57,7 @@ public class GuitarHero {
         		//System.out.println(keyboard.get(index).frequency);
         		keyboard.get(index).pluck();
         		System.out.println(keyboard.get(index).sample());
+        	}
         		
         		double sample = allSample(37, keyboard);
         
@@ -66,8 +67,10 @@ public class GuitarHero {
         	}
 
 
-        }
+        
     }
 }
+    
+
 
 

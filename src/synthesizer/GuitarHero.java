@@ -52,11 +52,14 @@ public class GuitarHero {
         	if (StdDraw.hasNextKeyTyped()) {
         		
         		char key = StdDraw.nextKeyTyped();
-        		int index = arrayIndex(keys, key);
-        		System.out.println(index);
-        		//System.out.println(keyboard.get(index).frequency);
-        		keyboard.get(index).pluck();
-        		System.out.println(keyboard.get(index).sample());
+        		int index = arrayIndex(keys, key);        		
+        		
+        		if (index != -1) {
+        			keyboard.get(index).pluck();
+        			System.out.println(index);
+            		System.out.println("frequency" + " " + keyboard.get(index).frequency);
+        			System.out.println(keyboard.get(index).sample());
+        		}
         	}
         		
         		double sample = allSample(37, keyboard);

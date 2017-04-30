@@ -10,25 +10,41 @@ public class GuitarHero {
 	
 	public static int arrayIndex(char[] keys, char key) {
 		for (int i = 0; i < keys.length; i++) {
-			if (keys[i] == key) {
-			return i;
-			}
+			if (keys[i] == key) 
+				return i;			
 		}
+		return -1;
 	}
 	
+	public static double allSample(int n, ArrayList<GuitarString> keyboard) {
+		double sample = 0;
+		for (int i = 0; i < n; i++) {
+			sample = sample + keyboard.get(i).sample();
+		}
+		return sample;
+	}
 	
+	public static void ticAll(int n, ArrayList<GuitarString> keyboard) {
+		for (int i = 0; i < n; i++) {
+			keyboard.get(i).tic();
+		}
+	}
    
 
     public static void main(String[] args) {
     	
     	/*Create an array of GuitarStrings*/
     	ArrayList<GuitarString> keyboard = new ArrayList<GuitarString>(37);
+    	
+    	/*Create an array of corresponding keys*/
     	char[] keys = {'q', '2', 'w', 'e', '4', 'r', '5', 't', 'y', '7', 'u', '8', 'i',
     			'9', 'o', 'p', '-', '[', '=', 'z', 'x', 'd', 'c', 'f', 'v', 'g', 'b', 'n',
     			'j', 'm', 'k', ',', '.', ';', '/', '"', ' '};
     	
+    	/*Instantiate GuitarString array, connect each frequency to a key*/
     	for (int i = 0; i < 37; i++) {
-    		keyboard.add(new GuitarString(440 * Math.pow(2.0, ((i - 24) * 12.0))));
+    		double stringFrequency = 440 * Math.pow(2.0, ((i-24) / 12.0));
+    		keyboard.add(new GuitarString(stringFrequency));
     		keyboard.get(i).name = (char) keys[i];  		   	
     	}
         
@@ -37,10 +53,15 @@ public class GuitarHero {
         		
         		char key = StdDraw.nextKeyTyped();
         		int index = arrayIndex(keys, key);
+        		System.out.println(index);
+        		//System.out.println(keyboard.get(index).frequency);
         		keyboard.get(index).pluck();
-        		double sample = keyboard.get(index).sample();
+        		System.out.println(keyboard.get(index).sample());
+        		
+        		double sample = allSample(37, keyboard);
+        
         		StdAudio.play(sample);
-        		keyboard.get(index).tic();
+        		ticAll(37, keyboard);
         		
         	}
 

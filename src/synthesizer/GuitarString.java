@@ -7,7 +7,7 @@ public class GuitarString {
     private static final int SR = 44100;      // Sampling Rate
     private static final double DECAY = .996; // energy decay factor
     private int capacity;
-    private double frequency;
+    public double frequency;
     public char name;
 
     /* Buffer for storing sound data. */
